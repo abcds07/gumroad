@@ -635,7 +635,7 @@ describe("Product Edit Memberships", type: :system, js: true) do
             check "Apply price changes to existing customers"
             fill_in "Effective date for existing customers", with: effective_date.strftime("%m%d%Y")
             set_rich_text_editor_input(find("[aria-label='Custom message']"), to_text: "hello")
-            sleep(1)
+            expect(page).to have_content("hello", wait: 5)
           end
 
           save_change
@@ -731,7 +731,7 @@ describe("Product Edit Memberships", type: :system, js: true) do
               fill_in "Amount monthly", with: new_price / 100
               fill_in "Effective date for existing customers", with: effective_date.strftime("%m%d%Y")
               set_rich_text_editor_input(find("[aria-label='Custom message']"), to_text: "hello")
-              sleep(1)
+              expect(page).to have_content("hello", wait: 5)
               click_on "Get a sample"
             end
             expect(page).to have_alert(text: "Email sample sent! Check your email")
