@@ -106,6 +106,7 @@ describe("Product checkout with upsells", type: :system, js: true) do
         choose "20%"
 
         click_on "Pay"
+        expect(page).to have_selector("body", wait: 5)
 
         within_modal "Cross-sell" do
           click_on "Add to cart"
