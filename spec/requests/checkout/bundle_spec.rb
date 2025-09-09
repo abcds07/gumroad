@@ -79,6 +79,7 @@ describe "Checkout bundles", :js, type: :system do
       add_to_cart(physical_bundle)
       fill_checkout_form(physical_bundle, address: { street: "2031 7th Ave", state: "WA", city: "Seattle", zip_code: "98121" })
       click_on "Pay"
+      expect(page).to have_selector("body", wait: 5)
       expect(page).to have_alert(text: "Your purchase was successful!")
 
       purchase = Purchase.last
@@ -120,6 +121,7 @@ describe "Checkout bundles", :js, type: :system do
       end
 
       click_on "Pay"
+      expect(page).to have_selector("body", wait: 5)
       expect(page).to have_alert(text: "Your purchase was successful!")
 
       bundle_purchase = Purchase.third_to_last
